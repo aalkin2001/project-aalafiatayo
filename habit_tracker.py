@@ -240,6 +240,67 @@ def daily_report():
 
 
 
+#Part 6:Building the Main Menu System--------------------------------------
+
+#Main Menu System
+
+def main_menu():
+    while True:
+        print("\n=== Weekly Task & Habit Tracker ===")
+        print("1. Add Task or Habit")
+        print("2. Mark Task or Habit as Complete")
+        print("3. Remove Task or Habit")
+        print("4. View Report (Weekly or Daily)")  
+        print("5. Exit")  
+
+        choice = input("\nEnter your choice (1-5): ").strip()
+
+        if choice == "1":
+            add_choice = input("Add a (T)ask or (H)abit? ").strip().lower()
+            if add_choice == "t":
+                add_task()
+            elif add_choice == "h":
+                add_habit()
+            else:
+                print("Invalid choice. Please enter 'T' or 'H'.")
+
+        elif choice == "2":
+            mark_choice = input("Mark a (T)ask or (H)abit as Complete? ").strip().lower()
+            if mark_choice == "t":
+                mark_task_complete()
+            elif mark_choice == "h":
+                mark_habit_complete()
+            else:
+                print("Invalid choice. Please enter 'T' or 'H'.")
+
+        elif choice == "3":
+            remove_choice = input("Remove a (T)ask or (H)abit? ").strip().lower()
+            if remove_choice == "t":
+                remove_task()
+            elif remove_choice == "h":
+                remove_habit()
+            else:
+                print("Invalid choice. Please enter 'T' or 'H'.")
+
+        elif choice == "4":
+            report_choice = input("View (W)eekly or (D)aily Report? ").strip().lower()
+            if report_choice == "w":
+                weekly_report()
+            elif report_choice == "d":
+                daily_report()
+            else:
+                print("Invalid choice. Please enter 'W' or 'D'.")
+
+        elif choice == "5":
+            print("\nThank you for using the Weekly Task & Habit Tracker! 👋")
+            break
+
+        else:
+            print("\nInvalid choice. Please select a number between 1 and 5.")
+
+# Run the Main Menu
+main_menu()
+
 
 
 
