@@ -27,7 +27,6 @@ Make sure you have installed Python 3.9 or later.
 sbatch submit_habit_task.sh
 
 2. Navigate the Main Menu
-
 Once started, you’ll see options like:
 
 === Weekly Task & Habit Tracker ===
@@ -38,7 +37,6 @@ Once started, you’ll see options like:
 5. Exit
    
 Choose an option by typing its number and pressing Enter.
-
 3. Add Tasks
 - Choose Option 1.
 - Enter “Task” when asked.
@@ -46,7 +44,6 @@ Choose an option by typing its number and pressing Enter.
 - Enter the name of your task.
 
 The task will be added and marked as incomplete by default.
-
 4. Add Habits
 - Choose Option 1.
 - Enter “Habit” when asked.
