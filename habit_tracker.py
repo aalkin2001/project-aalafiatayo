@@ -128,6 +128,115 @@ def mark_habit_complete():
     habits[habit_name][day] = True
     print(f"✅ Habit '{habit_name}' marked as complete for {day}.")
 
+#Part 4: Removing Tasks and Habits_____________________
+
+#Function to Remove a Task
+
+def remove_task():
+    day = input("Enter the day of the task you want to remove: ").strip().title()
+    if day not in days_of_week:
+        print("Invalid day entered.")
+        return
+
+    if not tasks[day]:
+        print(f"There are no tasks for {day}.")
+        return
+
+    # List tasks for the day
+    print(f"Tasks for {day}:")
+    for task_name in tasks[day]:
+        print(f" - {task_name}")
+
+    task_name = input("Enter the name of the task you want to remove: ").strip()
+    if task_name in tasks[day]:
+        del tasks[day][task_name]
+        print(f"✅ Task '{task_name}' has been removed from {day}.")
+    else:
+        print(f"Task '{task_name}' does not exist on {day}.")
+
+
+# Function to Remove a Habit
+
+def remove_habit():
+    if not habits:
+        print("There are no habits being tracked.")
+        return
+
+    # List habits
+    print("\nCurrent habits being tracked:")
+    for habit_name in habits:
+        print(f" - {habit_name}")
+
+    habit_name = input("\nEnter the name of the habit you want to remove: ").strip().title()
+    if habit_name in habits:
+        del habits[habit_name]
+        print(f"✅ Habit '{habit_name}' has been removed.")
+    else:
+        print(f"Habit '{habit_name}' does not exist.")
+
+#Generating Weekly and Daily Reports--------------------------
+
+#Weekly Report
+
+def weekly_report():
+    print("\n=== Weekly Report ===\n")
+
+    # Habits
+    if habits:
+        print("Habit Completion Summary (out of 7):")
+        for habit_name, days in habits.items():
+            completed_count = sum(1 for status in days.values() if status)
+            print(f" - {habit_name}: {completed_count}/7 days ✅")
+    else:
+        print("No habits found.")
+
+    # Tasks
+    all_tasks = []
+    completed_tasks = []
+    for day, day_tasks in tasks.items():
+        for task_name, status in day_tasks.items():
+            if status:
+                completed_tasks.append(f"{task_name} ({day})")
+            all_tasks.append((task_name, day))
+
+    if all_tasks:
+        not_completed_tasks = [
+            f"{name} ({day})" for (name, day) in all_tasks if f"{name} ({day})" not in completed_tasks
+        ]
+        print("\nCompleted Tasks ✅:", ", ".join(completed_tasks) if completed_tasks else "None")
+        print("Not Completed Tasks ❌:", ", ".join(not_completed_tasks) if not_completed_tasks else "None")
+    else:
+        print("\nNo tasks found.")
+
+
+
+#Daily Report
+
+def daily_report():
+    day = input("\nEnter the day for the daily report (e.g., Monday): ").strip().title()
+    if day not in days_of_week:
+        print("Invalid day entered.")
+        return
+
+    print(f"\n=== {day} Report ===\n")
+
+    # Tasks
+    if tasks[day]:
+        print("Tasks for the Day:")
+        for task_name, status in tasks[day].items():
+            mark = "✅" if status else "❌"
+            print(f" - {task_name}: {mark}")
+    else:
+        print("No tasks found for this day.")
+
+    # Habits
+    if habits:
+        print("\nHabits for the Day:")
+        for habit_name, days in habits.items():
+            mark = "✅" if days.get(day, False) else "❌"
+            print(f" - {habit_name}: {mark}")
+    else:
+        print("\nNo habits found.")
 
 
 
